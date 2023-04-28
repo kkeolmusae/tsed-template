@@ -28,11 +28,13 @@
     ],
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "@src/*": ["src/*", "dist/*"] // path alias 
+    },
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src", "test"],
+  "exclude": ["node_modules", "public", "dist"],
   "linterOptions": {
     "exclude": []
   }

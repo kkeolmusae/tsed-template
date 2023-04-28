@@ -1,10 +1,10 @@
-import {join} from "path";
-import {Configuration, Inject} from "@tsed/di";
-import {PlatformApplication} from "@tsed/common";
+import { join } from "path";
+import { Configuration, Inject } from "@tsed/di";
+import { PlatformApplication } from "@tsed/common";
 import "@tsed/platform-express"; // /!\ keep this import
 import "@tsed/ajv";
-import {config} from "./config/index";
-import * as rest from "./controllers/rest/index";
+import { config } from "./config/index";
+import * as rest from "@src/controllers/rest/index";
 
 @Configuration({
   ...config,
@@ -13,27 +13,16 @@ import * as rest from "./controllers/rest/index";
   httpsPort: false, // CHANGE
   disableComponentsScan: true,
   mount: {
-    "/rest": [
-      ...Object.values(rest)
-    ]
+    "/rest": [...Object.values(rest)],
   },
-  middlewares: [
-    "cors",
-    "cookie-parser",
-    "compression",
-    "method-override",
-    "json-parser",
-    { use: "urlencoded-parser", options: { extended: true }}
-  ],
+  middlewares: ["cors", "cookie-parser", "compression", "method-override", "json-parser", { use: "urlencoded-parser", options: { extended: true } }],
   views: {
     root: join(process.cwd(), "../views"),
     extensions: {
-      ejs: "ejs"
-    }
+      ejs: "ejs",
+    },
   },
-  exclude: [
-    "**/*.spec.ts"
-  ]
+  exclude: ["**/*.spec.ts"],
 })
 export class Server {
   @Inject()

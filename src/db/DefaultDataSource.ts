@@ -38,7 +38,9 @@ registerProvider<DataSource>({
     if (!DefaultDataSource.isInitialized) {
       await DefaultDataSource.initialize();
       $log.info(`${TAG} Connected with typeorm to database: MySQL`);
-      $log.info(`${TAG} Mysql Host: ${process.env.MYSQL_HOST}`);
+      $log.info(`${TAG} MySQL Host: ${process.env.MYSQL_HOST}`);
+      $log.info(`${TAG} MySQL User: ${process.env.MYSQL_USER}`);
+      $log.info(`${TAG} MySQL DB: ${process.env.MYSQL_DB}`);
     }
     return DefaultDataSource;
   },

@@ -35,6 +35,29 @@ $ yarn build
 $ yarn start:prod
 ```
 
+## DB Migration
+
+### Running Migrations
+Run the migrations that have been apllied to the project since first release:
+```bash
+$ yarn migration:run
+```
+
+### Reverting Migrations
+If for some reason you want to revert the changes, you can run:
+```bash
+$ yarn migration:revert
+```
+### Generating Migrations
+TypeORM is able to automatically generate migration files with schema changes you made. You can run following command:
+```bash
+$ yarn migration:generate <MIGRATION_FILE_PATH>
+
+# ex) yarn migration:generate ./src/migrations/init
+```
+
+---
+
 ## Docker
 
 ```

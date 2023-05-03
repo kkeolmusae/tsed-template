@@ -1,4 +1,4 @@
-import { BlockApiService } from "@src/services/BlockApiService";
+import { BlockApiService } from "@src/services/Block/BlockApiService";
 import { PathParams } from "@tsed/common";
 import { Controller } from "@tsed/di";
 import { Get } from "@tsed/schema";
@@ -14,6 +14,6 @@ export class BlockController {
 
   @Get("/:blockNumber")
   getBlock(@PathParams("blockNumber") blockNumber: number) {
-    return this.blockApiService.getBlockNumber(blockNumber);
+    return this.blockApiService.getBlockInfo(blockNumber);
   }
 }

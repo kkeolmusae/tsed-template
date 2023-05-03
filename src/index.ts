@@ -1,7 +1,7 @@
 import { $log } from "@tsed/common";
 import { PlatformExpress } from "@tsed/platform-express";
 import { Server } from "@src/Server";
-import { Test } from "@src/services/Test";
+import { TestCron } from "@src/services/Cron/TestCron";
 
 const TAG = `[Index]`;
 async function bootstrap() {
@@ -10,7 +10,7 @@ async function bootstrap() {
     $log.info(`${TAG} start`);
 
     if (process.env.TEST === "true") {
-      platform.addComponents(Test);
+      platform.addComponents(TestCron);
     }
 
     await platform.listen();

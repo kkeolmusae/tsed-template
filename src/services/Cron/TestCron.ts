@@ -2,7 +2,7 @@ import { $log, OnReady } from "@tsed/common";
 import { Service } from "@tsed/di";
 
 @Service()
-export class Test implements OnReady {
+export class TestCron implements OnReady {
   TAG = "[Test]";
 
   constructor() {}

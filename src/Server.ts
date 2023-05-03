@@ -45,6 +45,5 @@ export class Server {
     $log.info(`${TAG} Starting Ts.ed template project server`);
     $log.info(`${TAG} Connecting to the following database server:`);
     $log.info(`${TAG} NODE_ENV: ${process.env.NODE_ENV}`);
-    $log.info(`${TAG} ENV: ${process.env.ENV}`);
   }
 }

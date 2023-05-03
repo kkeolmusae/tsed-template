@@ -23,7 +23,7 @@ export const DefaultDataSource: DataSource = new DataSource({
   logging: process.env.MYSQL_LOG === "true",
   synchronize: false,
   dropSchema: false,
-  entities: [`${rootDir}/entities/**/*.{ts,js}`],
+  entities: [`${rootDir}/models/**/*.{ts,js}`],
   migrations: [`${rootDir}/migrations/**/*.{ts,js}`],
   migrationsTableName: "migrations",
   extra: {

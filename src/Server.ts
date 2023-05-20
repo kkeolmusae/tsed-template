@@ -4,11 +4,14 @@ import { $log, PlatformApplication } from "@tsed/common";
 import "@tsed/platform-express"; // /!\ keep this import
 import "@tsed/ajv";
 import { DataSource } from "typeorm";
+import cors from "cors";
 
 import { config } from "@src/config/index";
 import * as rest from "@src/controllers/rest/index";
 import { DefaultDataSource } from "@src/db/DefaultDataSource";
-import cors from "cors";
+import { InvalidOrigin } from "@src/exceptions/CommonExceptions";
+
+import GlobalErrorHandlerMiddleware from "@src/middlewares/GlobalErrorHandlerMiddleware";
 
 const TAG = "[Server]";
 const rootDir = __dirname;
@@ -51,7 +54,7 @@ export class Server {
         if (whitelist.includes(origin) || !origin) {
           callback(null, true);
         } else {
-          callback(new Error(`${TAG} Not allowed by CORS. ${origin}`));
+          callback(new InvalidOrigin(origin));
         }
       },
       credentials: true,
@@ -64,5 +67,9 @@ export class Server {
     $log.info(`${TAG} Starting Ts.ed template project server`);
     $log.info(`${TAG} Connecting to the following database server:`);
     $log.info(`${TAG} NODE_ENV: ${process.env.NODE_ENV}`);
+  }
+
+  $afterRoutesInit() {
+    this.app.use(GlobalErrorHandlerMiddleware);
   }
 }

@@ -8,6 +8,7 @@ import { DataSource } from "typeorm";
 import { config } from "@src/config/index";
 import * as rest from "@src/controllers/rest/index";
 import { DefaultDataSource } from "@src/db/DefaultDataSource";
+import cors from "cors";
 
 const TAG = "[Server]";
 const rootDir = __dirname;
@@ -40,6 +41,24 @@ export class Server {
 
   @Configuration()
   protected settings: Configuration;
+
+  public $beforeRoutesInit(): Promise<any> | void {
+    const whitelist: string[] = ["https://tsed.io"].concat(process.env.IS_DEV === "true" ? ["http://localhost:8888", "http://0.0.0.0:8888"] : []);
+
+    const corsOptions = {
+      origin: function (origin: any, callback: any) {
+        // origin is undefined when making requests between servers
+        if (whitelist.includes(origin) || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error(`${TAG} Not allowed by CORS. ${origin}`));
+        }
+      },
+      credentials: true,
+    };
+
+    this.app.use(cors(corsOptions));
+  }
 
   public $onInit(): Promise<any> | void {
     $log.info(`${TAG} Starting Ts.ed template project server`);

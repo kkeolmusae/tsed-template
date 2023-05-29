@@ -7,7 +7,6 @@ import { DataSource } from "typeorm";
 import cors from "cors";
 
 import { config } from "@src/config/index";
-import * as rest from "@src/controllers/rest/index";
 import { DefaultDataSource } from "@src/db/DefaultDataSource";
 import { InvalidOrigin } from "@src/exceptions/CommonExceptions";
 
@@ -26,9 +25,6 @@ $log.debug(join(process.cwd(), "../views"));
   httpsPort: false, // CHANGE
   disableComponentsScan: true,
   typeORM: DefaultDataSource as DataSource,
-  mount: {
-    "/rest": process.env.REST === "true" ? [...Object.values(rest)] : [],
-  },
   middlewares: ["cors", "cookie-parser", "compression", "method-override", "json-parser", { use: "urlencoded-parser", options: { extended: true } }],
   views: {
     root: join(process.cwd(), "../views"),

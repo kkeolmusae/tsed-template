@@ -20,6 +20,7 @@
   "dependencies": {
     "@tsed/ajv": "^7.27.1",
     "@tsed/common": "^7.27.1",
+    "@tsed/components-scan": "^7.29.0",
     "@tsed/core": "^7.27.1",
     "@tsed/di": "^7.27.1",
     "@tsed/engines": "^7.27.1",

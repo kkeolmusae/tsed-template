@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "test": "jest",
     "build": "yarn run barrels && tsc --project tsconfig.compile.json",
     "barrels": "barrelsby --config .barrelsby.json",
     "start": "yarn run barrels && tsnd --inspect --exit-child --cls --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
@@ -62,6 +63,7 @@
     "@types/multer": "^1.4.7",
     "@types/node": "^18.16.2",
     "connect": "^3.7.0",
+    "jest": "^29.5.0",
     "multer": "^1.4.5-lts.1",
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0"
